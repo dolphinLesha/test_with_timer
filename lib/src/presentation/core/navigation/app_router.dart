@@ -9,8 +9,16 @@ class AppRouter extends GoRouter {
     return _appRouter;
   }
 
+  ///
   AppRouter._internal()
       : super(
+          // I make redirection only for home page
+          redirect: (context, state) {
+            if (state.location == '/') {
+              return AppRoutes.timerScreen;
+            }
+            return null;
+          },
           initialLocation: AppRoutes.timerScreen,
           routes: [
             TimerRoute(
